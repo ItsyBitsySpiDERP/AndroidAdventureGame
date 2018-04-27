@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Adventure Game</string>
+    <string name="hello_world">Hello World</string>
+    <string name="player_s_hp">Player\'s HP</string>
+    <string name="HP">Player\'s HP</string>
+    <string name="enemy_s_hp">Enemy\'s HP</string>
+    <string name="action_question">What would you like to do?</string>
+    <string name="greeting_text">Welcome to the Dungeon!</string>
+
+    <!-- BUTTONS -->
+
+    <string name="attack">ATTACK</string>
+    <string name="potion">DRINK POTION</string>
+    <string name="run_away">RUN AWAY</string>
+
+</resources>
