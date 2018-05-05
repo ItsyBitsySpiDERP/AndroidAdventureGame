@@ -103,42 +103,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //drink potion
             case R.id.action_button_2:
-                System.out.println("You drink HP Potion...yayy");
+                drinkHealthPotion();
                 break;
 
             //run away
             case R.id.action_button_3:
-                System.out.println("You run away");
+                escape();
                 break;
         }
     }
 
-    public void attack() {
+    public void attack(){
         int damageDealt = rand.nextInt(10) + hero.getDamage();
         int damageTaken = rand.nextInt(10) + enemy.getDamage();
 
         enemyHealth -= damageDealt;
         hero.takeDamage(damageTaken);
 
-        String message =  hero.getName() + " strikes the " + enemy.getName() + " for " + damageDealt + " damage.";
+        String message = hero.getName() + " strikes the " + enemy.getName() + " for " + damageDealt + " damage.";
 
         if (hero.getCritStrike()) {
-             message += ("\n It was a critical hit!");
+            message += ("\n It was a critical hit!");
         }
-        message += ("\n " + hero.getName() +  " recieves " + damageTaken + " damage in retaliation!");
+        message += ("\n " + hero.getName() + " recieves " + damageTaken + " damage in retaliation!");
 
         if (enemy.getCritStrike()) {
             message += ("\n It was a critical hit!");
         }
 
         informationText.setText(message);
-        enemyHealthText.setText ( getResources().getString(R.string.enemy_s_hp) + String.valueOf(enemyHealth));
-        playerHealth.setText ( getResources() .getString(R.string.player_s_hp) + String.valueOf(hero.getHealth()));
+        enemyHealthText.setText(getResources().getString(R.string.enemy_s_hp) + String.valueOf(enemyHealth));
+        playerHealth.setText(getResources().getString(R.string.player_s_hp) + String.valueOf(hero.getHealth()));
 
         if (enemyHealth <= 0) {
             enemyDefeated();
         }
-   }
+    }
+
+
+    public void drinkHealthPotion() {
+
+        if(hero.getPotions() > 0) {
+            hero.drinkPotion(hero.getMaxHealth() / 2);
+            String message =("\n" + hero.getName() + " drank a health potion, healing themself for " + hero.getMaxHealth() / 2 + ". ");
+            message += ("\n They now have " + hero.getHealth() + " HP and " + hero.getPotions() + " health potions left.\n");
+            informationText.setText(message);
+            } else {
+               String message = ("\n " + hero.getName() + " has no health potions left! Defeat enemies for a chance to get one!\n");
+               informationText.setText(message);
+            }
+        }
+
+    public void escape() {
+        String message = "\n"+ hero.getName() + " runs away from the " + enemy.getName() + "!";
+        informationText.setText(message);
+    }
+
 
     public void enemyDefeated() {
 
@@ -170,3 +190,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         informationText.setText(message);
     }
 }
+
