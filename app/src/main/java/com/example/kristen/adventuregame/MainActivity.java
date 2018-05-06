@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     boolean running = true;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,52 +50,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
 
-
-        in = new Scanner(System.in);
-        rand = new Random();
-
-        //Game variables
-        //Enemy dummy = new Enemy("Training Dummy", 1, 1, 1, 1000);
-        hero = new Hero("player");
-
-        Enemy skeleton = new Enemy("Skeleton", 3, 0, 20, 50);
-        Enemy zombie = new Enemy("Zombie", 1, 5, 20, 50);
-        Enemy barbarian = new Enemy("Barbarian", 3, 3, 25, 50);
-        Enemy assassin = new Enemy("Assassin", 5, 0, 30, 50);
-
-        Enemy dragon = new Enemy("Migi the Deathly Dragon", 3, 10, 50, 100);
-        Enemy beast = new Enemy("Sinatra the Giant", 3, 10, 50, 100);
-
-        enemies = new Enemy[] {skeleton, zombie, barbarian, assassin, /*dummy*/};
-        bosses = new Enemy[] {dragon, beast};
-
-        //Drop Chance
-        healthPotionDropChance = 50;
-
-        if (stageNumber%10==0) {
-            enemyIndex = rand.nextInt(bosses.length);
-            enemy = bosses[enemyIndex];
-        }
-        else {
-            enemyIndex= rand.nextInt(enemies.length);
-            enemy = enemies[enemyIndex];
-        }
-
-        //Enemy health scale with level
-
-        enemyModifier = hero.getLevel() * 5;
-        enemyHealth = enemy.getMaxHealth() + enemyModifier;
-        enemyHealthText.setText ( getResources().getString(R.string.enemy_s_hp) + String.valueOf(enemyHealth));
-        hero.setHealth(hero.getMaxHealth());
-        playerHealth.setText ( getResources() .getString(R.string.player_s_hp) + String.valueOf(hero.getMaxHealth()));
-
-        informationText.setText (enemy.getName() + " has appeared!");
     }
+
+    //Game variables
+    //Enemy dummy = new Enemy("Training Dummy", 1, 1, 1, 1000);
+    Enemy skeleton = new Enemy("Skeleton", 3, 0, 20, 50);
+    Enemy zombie = new Enemy("Zombie", 1, 5, 20, 50);
+    Enemy barbarian = new Enemy("Barbarian", 3, 3, 25, 50);
+    Enemy assassin = new Enemy("Assassin", 5, 0, 30, 50);
+
+    Enemy dragon = new Enemy("Migi the Deathly Dragon", 3, 10, 50, 100);
+    Enemy beast = new Enemy("Sinatra the Giant", 3, 10, 50, 100);
+
+    Enemy[]{ skeleton, zombie, barbarian, assassin, /*dummy*/};
+    Enemy[]{dragon, beast};
+
+    //Drop Chance
+    healthPotionDropChance =50;
+
+
 
     @Override
     public void onClick(View v) {
         System.out.println("CLICK!");
-        switch(v.getId()){
+        switch(v.getId()) {
 
             //attacks
             case R.id.action_button_1:
@@ -112,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
 
     public void attack(){
         int damageDealt = rand.nextInt(10) + hero.getDamage();

@@ -12,6 +12,7 @@ public abstract class Character {
 	protected int hitChance;
 	protected int agility;
 	protected boolean critStrike;
+	protected String enemyAppear;
 	
 
 	
@@ -24,7 +25,8 @@ public abstract class Character {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+
 	// Getters & Setters for Stats.
 	
 	public int getStrength() {
